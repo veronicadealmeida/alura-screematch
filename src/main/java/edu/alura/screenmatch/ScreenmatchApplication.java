@@ -1,13 +1,14 @@
-package edu.alura.screematch;
+package edu.alura.screenmatch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ScreematchApplication {
+public class ScreenmatchApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ScreematchApplication.class, args);
+
+		SpringApplication.run(ScreenmatchApplication.class, args);
 	}
 
 }
