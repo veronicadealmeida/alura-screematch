@@ -2,6 +2,9 @@ package edu.alura.screenmatch.controller;
 
 import edu.alura.screenmatch.domain.filme.DadosCadastroFilme;
 import edu.alura.screenmatch.domain.filme.Filme;
+import edu.alura.screenmatch.domain.filme.FilmeRepsitory;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +18,8 @@ import java.util.List;
 @RequestMapping("/filmes")
 public class FilmeController {
 
-    private List<Filme> filmes = new ArrayList<>();
+    @Autowired
+    private FilmeRepsitory repository;
 
     @GetMapping("/formulario")
     public String carregaPaginaFormulario(){
@@ -24,15 +28,15 @@ public class FilmeController {
 
     @GetMapping
     public String carregaPaginaListagem(Model model){
-        model.addAttribute("lista", filmes);
+        model.addAttribute("lista", repository.findAll());
         return "filmes/listagem";
     }
 
     @PostMapping
-
+    @Transactional
     public String cadastraFilme(DadosCadastroFilme dados) {
         var filme = new Filme(dados);
-        filmes.add(filme);
+        repository.save(filme);
 
         return "redirect:/filmes";
     }

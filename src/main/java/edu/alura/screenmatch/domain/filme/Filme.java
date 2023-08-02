@@ -1,14 +1,19 @@
 package edu.alura.screenmatch.domain.filme;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 
+@Entity
+@Table(name = "filmes")
 public class Filme {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private Integer duracaoEmMinutos;
     private Integer anoLancamento;
