@@ -1,16 +1,14 @@
 package edu.alura.screenmatch.controller;
 
+import edu.alura.screenmatch.domain.filme.DadosAleracaoFilme;
 import edu.alura.screenmatch.domain.filme.DadosCadastroFilme;
 import edu.alura.screenmatch.domain.filme.Filme;
 import edu.alura.screenmatch.domain.filme.FilmeRepsitory;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,13 @@ public class FilmeController {
     private FilmeRepsitory repository;
 
     @GetMapping("/formulario")
-    public String carregaPaginaFormulario(){
+    public String carregaPaginaFormulario(Long id, Model model){
+        if (id != null) {
+            var filme = repository.getReferenceById(id);
+            model.addAttribute("filme", filme);
+
+        }
+
         return "filmes/formulario";
     }
 
@@ -34,6 +38,7 @@ public class FilmeController {
     }
 
     @PostMapping
+    @Transactional
     public String cadastraFilme(DadosCadastroFilme dados) {
         var filme = new Filme(dados);
         repository.save(filme);
@@ -41,7 +46,17 @@ public class FilmeController {
         return "redirect:/filmes";
     }
 
+    @PutMapping
+    @Transactional
+    public String alteraFilme(DadosAleracaoFilme dados) {
+        var filme = repository.getReferenceById(dados.id());
+        filme.atualizaDados(dados);
+
+        return "redirect:/filmes";
+    }
+
     @DeleteMapping
+    @Transactional
     public String removeFilme(Long id){
         repository.deleteById(id);
         return "redirect:/filmes";
