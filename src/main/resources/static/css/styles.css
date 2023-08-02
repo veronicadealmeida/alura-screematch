@@ -44,9 +44,17 @@ table {
     border-spacing: 0;
 }
 
-a {
-    color: inherit;
+.novo{
+    color: white;
     text-decoration: none;
+    background-color: var(--azul-escuro);
+    border: none;
+    border-radius: 24px;
+    padding: 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1rem;
 }
 
 img {
@@ -229,6 +237,17 @@ label {
 }
 
 input[type="submit"] {
+  background-color: var(--azul-escuro);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 15px;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+input[type="button"] {
   background-color: var(--azul-escuro);
   color: white;
   border: none;
