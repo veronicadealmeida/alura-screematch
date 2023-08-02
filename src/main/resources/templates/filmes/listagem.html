@@ -1,32 +1,38 @@
 <!doctype html>
-<html lang="pt-BR" xmlns:th="htttp://thymeleaf.org">
+<html lang="pt-BR"
+      xmlns:th="htttp://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nx/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+    >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lista de Filmes</title>
 </head>
 <body>
-    <h1>Lista de Filmes</h1>
+    <div layout:fragment="conteudo">
 
-    <table>
-        <thead>
-            <tr>
-                <th>NOME</th>
-                <th>DURAÇÃO</th>
-                <th>ANO DE LANÇAMENTO</th>
-                <th>GÊNERO</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="filme : ${lista}">
-                <td th:text="${filme.nome}"></td>
-                <td th:text="${filme.duracaoEmMinutos}"></td>
-                <td th:text="${filme.anoLancamento}"></td>
-                <td th:text="${filme.genero}"></td>
-            </tr>
-        </tbody>
-    </table>
+        <h1>Lista de Filmes</h1>
+
+        <a href="/filmes/formulario">Novo</a>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>NOME</th>
+                    <th>DURAÇÃO</th>
+                    <th>ANO DE LANÇAMENTO</th>
+                    <th>GÊNERO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="filme : ${lista}">
+                    <td th:text="${filme.nome}"></td>
+                    <td th:text="${filme.duracaoEmMinutos}"></td>
+                    <td th:text="${filme.anoLancamento}"></td>
+                    <td th:text="${filme.genero}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
