@@ -3,22 +3,20 @@ package edu.alura.screenmatch.controller;
 import edu.alura.screenmatch.domain.filme.DadosAleracaoFilme;
 import edu.alura.screenmatch.domain.filme.DadosCadastroFilme;
 import edu.alura.screenmatch.domain.filme.Filme;
-import edu.alura.screenmatch.domain.filme.FilmeRepsitory;
+import edu.alura.screenmatch.domain.filme.FilmeRepository;
+import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/filmes")
 public class FilmeController {
 
     @Autowired
-    private FilmeRepsitory repository;
+    private FilmeRepository repository;
 
     @GetMapping("/formulario")
     public String carregaPaginaFormulario(Long id, Model model){

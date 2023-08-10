@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "filmes")
+@Table(name = "filmes", schema = "screenmatch")
 public class Filme {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
